@@ -19,7 +19,7 @@ public class User {
      * @param name - name.
      * @param amout - amount of money
      */
-    public User(final String name, int amount) {
+    User(final String name, int amount) {
         this.name = name;
         this.amount = amount;
     }
@@ -28,7 +28,7 @@ public class User {
      * Getter.
      * @return amount
      */
-    public synchronized int getAmount() {
+    int getAmount() {
         return this.amount;
     }
 
@@ -36,7 +36,7 @@ public class User {
      * Setter.
      * @param amount - amount
      */
-    public synchronized void setAmount(int amount) {
+    void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -44,7 +44,7 @@ public class User {
      * Getter.
      * @return name
      */
-    public String getName() {
+    String getName() {
         return this.name;
     }
 

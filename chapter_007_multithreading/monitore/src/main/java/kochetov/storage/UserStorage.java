@@ -1,13 +1,14 @@
 package kochetov.storage;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+
 
 /**
  * UserStorage.
  * Created by Сергей on 30.04.2017.
  */
-public class UserStorage {
+class UserStorage {
     /**
      * Map of users.
      */
@@ -20,8 +21,8 @@ public class UserStorage {
     /**
      * Constructor.
      */
-    public UserStorage() {
-        this.users = new ConcurrentHashMap<>();
+    UserStorage() {
+        this.users = new HashMap<>();
         this.id = 0;
     }
 
@@ -29,7 +30,7 @@ public class UserStorage {
      * Add new User to users.
      * @param user - new user
      */
-    public void addUser(final User user) {
+    void addUser(final User user) {
         this.users.put(this.incId(), user);
     }
 
@@ -46,7 +47,7 @@ public class UserStorage {
      * @param id - user id
      * @return result
      */
-    public  synchronized boolean deleteUser(final int id) {
+    synchronized boolean deleteUser(final int id) {
         boolean result = false;
         if (this.users.containsKey(id)) {
             this.users.remove(id);
@@ -61,7 +62,7 @@ public class UserStorage {
      * @param user - user
      * @return true if update is ok
      */
-    public synchronized boolean updateUser(final int id, final User user) {
+    synchronized boolean updateUser(final int id, final User user) {
         boolean result = false;
         if (this.users.containsKey(id)) {
             this.users.put(id, user);
@@ -75,7 +76,7 @@ public class UserStorage {
      * @param id - user id
      * @return user
      */
-    public User read(final int id) {
+    User read(final int id) {
         User result = null;
         if (this.users.containsKey(id)) {
             result = this.users.get(id);
@@ -88,9 +89,9 @@ public class UserStorage {
      * @param amount - money
      * @param userSrc - user donor
      * @param userDst - user recipient
-     * @return
+     * @return result
      */
-    public boolean transferMoney(final int amount, final int userSrc, final int userDst) {
+    boolean transferMoney(final int amount, final int userSrc, final int userDst) {
         boolean result = false;
         if (userSrc >= 0 && userSrc <= this.id && userDst >= 0 && userDst <= this.id) {
             final User src = this.users.get(userSrc);
