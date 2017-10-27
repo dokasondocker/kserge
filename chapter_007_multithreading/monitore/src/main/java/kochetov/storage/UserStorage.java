@@ -89,9 +89,9 @@ class UserStorage {
      * @param amount - money
      * @param userSrc - user donor
      * @param userDst - user recipient
-     * @return result
+     * @return result transfer
      */
-    boolean transferMoney(final int amount, final int userSrc, final int userDst) {
+    synchronized boolean transferMoney(final int amount, final int userSrc, final int userDst) {
         boolean result = false;
         if (userSrc >= 0 && userSrc <= this.id && userDst >= 0 && userDst <= this.id) {
             final User src = this.users.get(userSrc);

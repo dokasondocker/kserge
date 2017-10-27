@@ -17,7 +17,7 @@ public class User {
     /**
      * Constructor.
      * @param name - name.
-     * @param amout - amount of money
+     * @param amount - amount of money
      */
     User(final String name, int amount) {
         this.name = name;
