@@ -30,7 +30,7 @@ class UserStorage {
      * Add new User to users.
      * @param user - new user
      */
-    void addUser(final User user) {
+    synchronized void addUser(final User user) {
         this.users.put(this.incId(), user);
     }
 
@@ -76,7 +76,7 @@ class UserStorage {
      * @param id - user id
      * @return user
      */
-    User read(final int id) {
+    synchronized User read(final int id) {
         User result = null;
         if (this.users.containsKey(id)) {
             result = this.users.get(id);
